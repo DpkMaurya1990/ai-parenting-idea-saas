@@ -5,8 +5,11 @@ import '../styles/globals.css';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ClerkProvider {...pageProps}>
-      <Component {...pageProps} />
-    </ClerkProvider>
+<ClerkProvider
+  {...pageProps}
+  afterSignOutUrl="/"
+>
+  <Component {...pageProps} />
+</ClerkProvider>
   );
 }
