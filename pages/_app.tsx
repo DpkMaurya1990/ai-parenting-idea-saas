@@ -7,7 +7,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
 <ClerkProvider
   {...pageProps}
+  publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
   afterSignOutUrl="/"
+  domain="huggingface.co"
 >
   <Component {...pageProps} />
 </ClerkProvider>
