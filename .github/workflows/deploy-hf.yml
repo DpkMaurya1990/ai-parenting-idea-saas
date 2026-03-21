@@ -6,11 +6,6 @@ on:
       - main
       - dev
 
-  workflow_dispatch:
-    inputs:
-      commit_id:
-        description: "Commit ID to rollback"
-        required: true
 
 jobs:
   deploy-dev:
