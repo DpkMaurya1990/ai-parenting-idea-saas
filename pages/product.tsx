@@ -29,7 +29,7 @@ function ConsultationForm() {
 
         const jwt = await getToken();
         console.log("JWT:", jwt);
-        
+
         if (!jwt) {
             setOutput('Authentication required');
             setLoading(false);
@@ -39,7 +39,7 @@ function ConsultationForm() {
         const controller = new AbortController();
         let buffer = '';
 
-        await fetchEventSource('https://ai-healthcare-consultation-saas-dev.hf.space/api/consultation', {
+        await fetchEventSource('https://ai-healthcare-consultation-saas-dev.hf.space/consultation', {
             signal: controller.signal,
             method: 'POST',
             headers: {
