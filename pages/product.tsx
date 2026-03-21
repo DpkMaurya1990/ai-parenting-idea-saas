@@ -53,8 +53,7 @@ function ConsultationForm() {
             }),
             onmessage(ev) {
                 console.log("DATA:", ev.data);
-                buffer += ev.data + "\n";
-                setOutput(prev => prev + ev.data + "\n");
+                setOutput(prev => prev + ev.data);
             },
             onclose() { 
                 setLoading(false); 
