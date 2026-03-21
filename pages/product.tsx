@@ -22,7 +22,7 @@ function ConsultationForm() {
     const [loading, setLoading] = useState(false);
 
     async function handleSubmit(e: FormEvent) {
-        console.log("🔥 Submit clicked");
+        console.log(" Submit clicked");
         e.preventDefault();
         setOutput('');
         setLoading(true);
