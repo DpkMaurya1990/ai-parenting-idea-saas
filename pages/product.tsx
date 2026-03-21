@@ -37,7 +37,7 @@ function ConsultationForm() {
         let buffer = '';
 
         await fetchEventSource('https://ai-healthcare-consultation-saas-dev.hf.space/api/consultation', {
-            
+            signal: controller.signal,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
