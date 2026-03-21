@@ -11,6 +11,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = FastAPI()
+from fastapi import APIRouter
+
+api_router = APIRouter()
+
 
 # Add CORS middleware (allows frontend to call backend)
 app.add_middleware(
@@ -46,7 +50,7 @@ Date of Visit: {visit.date_of_visit}
 Notes:
 {visit.notes}"""
 
-@app.post("/consultation")
+@api_router.post("/consultation")
 def consultation_summary(
     visit: Visit,
     creds: HTTPAuthorizationCredentials = Depends(clerk_guard),
@@ -100,17 +104,4 @@ if static_path.exists():
     async def serve_root():
         return FileResponse(static_path / "index.html")
 
-    # SPA fallback (for routes like /product)
-    @app.get("/{full_path:path}")
-    async def serve_pages(full_path: str):
-
-        # 🚨 DO NOT override FastAPI routes
-        if full_path in {"docs", "openapi.json", "consultation", "health"}:
-            return {"error": "Not Found"}
-
-        html_file = static_path / f"{full_path}.html"
-
-        if html_file.exists():
-            return FileResponse(html_file)
-
-        return FileResponse(static_path / "index.html")
+    app.include_router(api_router, prefix="/api")
